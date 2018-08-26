@@ -1,0 +1,69 @@
+[System]
+Name='Z_correction'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=25
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='error'
+Range=[-0.04 0.04]
+NumMFs=5
+MF1='NB':'trimf',[-0.06 -0.04 -0.02]
+MF2='NS':'trimf',[-0.04 -0.02 0]
+MF3='Z':'trimf',[-0.02 0 0.02]
+MF4='PS':'trimf',[0 0.02 0.04]
+MF5='PB':'trimf',[0.02 0.04 0.06]
+
+[Input2]
+Name='errorder'
+Range=[-0.12 0.06]
+NumMFs=5
+MF1='NB':'trimf',[-0.165 -0.12 -0.075]
+MF2='NS':'trimf',[-0.12 -0.075 -0.03]
+MF3='Z':'trimf',[-0.075 -0.03 0.015]
+MF4='PS':'trimf',[-0.03 0.015 0.06]
+MF5='PB':'trimf',[0.015 0.06 0.105]
+
+[Output1]
+Name='Z-correc'
+Range=[-10 10]
+NumMFs=5
+MF1='NB':'trapmf',[-11 -10 -5 -4]
+MF2='Z':'trimf',[-0.5 0 0.5]
+MF3='PB':'trapmf',[4.5 5 10 11]
+MF4='NS':'trapmf',[-5 -4 -1 0]
+MF5='PS':'trapmf',[0 0.5 4.5 5]
+
+[Rules]
+1 1, 4 (1) : 1
+1 2, 1 (1) : 1
+1 3, 1 (1) : 1
+1 4, 1 (1) : 1
+1 5, 1 (1) : 1
+2 1, 5 (1) : 1
+2 2, 4 (1) : 1
+2 3, 4 (1) : 1
+2 4, 1 (1) : 1
+2 5, 1 (1) : 1
+3 1, 3 (1) : 1
+3 2, 5 (1) : 1
+3 3, 2 (1) : 1
+3 4, 4 (1) : 1
+3 5, 1 (1) : 1
+4 1, 3 (1) : 1
+4 2, 3 (1) : 1
+4 3, 5 (1) : 1
+4 4, 2 (1) : 1
+4 5, 4 (1) : 1
+5 1, 3 (1) : 1
+5 2, 3 (1) : 1
+5 3, 3 (1) : 1
+5 4, 5 (1) : 1
+5 5, 2 (1) : 1
